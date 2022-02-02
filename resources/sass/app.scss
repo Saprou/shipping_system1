@@ -1,0 +1,193 @@
+@import './colors.scss';
+.minus{
+    fill:rgb(100, 16, 3);
+    margin:0 0.4em;
+    cursor:pointer;
+}
+/******* TABLE *******/
+
+/*******  Page ********/
+.page{
+    overflow:auto;
+}
+.logo{
+    height:7em;
+    width:unset !important;
+}
+
+/*******  END Page ********/
+/*******  Window ********/
+.window{
+    box-shadow:0 0 3px 0 #aaa;
+    border-radius:6px;
+    background-color:#fff;
+    &>header{
+        padding:0.4em;
+        border-bottom:1px solid #aaa;
+    }
+}
+/*******  END Window ********/
+.open-list{
+    display:flex !important;
+}
+/* Data Table */
+.data-table-container{
+    max-width:100%;
+    overflow:auto;
+    flex: 1;
+    box-shadow: inset 0 0 3px 0 #aaa;
+}
+.data-table{
+    font-size:0.7em;
+    margin:0.1em ;
+    width:99%;
+    position:relative;
+    border-collapse:collapse;
+    background-color:#fff;
+    overflow:auto;
+    thead{
+      tr{
+          td{
+              padding:0.2em 0.4em;
+              background-color:$Basic;
+              border:1px solid #aaa;
+              border-top:1px solid #4a4c4e;
+              border-bottom:1px solid #4a4c4e;
+              min-width:max-content;
+              text-align: center;
+              color:#fff;
+          }
+      }
+    }
+    tbody{
+      font-size:0.8em;
+      font-weight: 400;
+      tr{
+          border-bottom:1px solid #8ab5b8;
+          &:hover{
+            background-color:rgba(200, 200, 200, 0.3) 
+          }
+          &:hover .actions{
+            background-color:rgba(200, 200, 200) 
+          }
+      }
+      td{
+          padding:0.6em;
+          text-align: center;
+          width:max-content;
+      }
+      .actions{
+        background-color:#fff;
+      }
+    }
+    td{
+      min-width: max-content;
+      padding:0 6px;
+      white-space: nowrap;
+      background-color:inherit;
+    }
+    .actions{
+      box-shadow: 2px 0px 2px 0px #aaa;
+      position:sticky;
+      left:0;
+      text-align:center;
+      max-width:min-content;
+      z-index:1;
+      &>div{
+          display:flex;
+          justify-content: center;
+          align-items: center;
+          &>i{
+              cursor:pointer;
+              font-size:1.2em;
+              margin:0.2em;
+          }
+      }
+    }  
+}
+.link{
+    display:inline-block;
+    color:#60b5bb;
+    text-decoration:underline;
+    cursor:pointer;
+    &:hover{
+        color:#160d8d;
+    }
+}
+.filters-container{
+    box-shadow: 0 0 3px #222;
+    margin:0.4em;   padding:0.4em;
+    border-radius:4px;
+    display:inline-block;
+    .filter{
+        display:inline-flex;
+        flex-direction:column;
+        margin: 0 0.2em;
+        label{
+            font-size:0.7em;   color:#4a4c4e;   font-weight: 600;    margin:0.2em;
+        }
+    }
+}
+.reload-icon{
+    width:1.2em;  height:1.2em;
+    fill: #ff6600;  cursor:pointer;
+    margin:0.4em;
+}
+/* End Data Table */
+
+
+/* BUTTONS */
+.btn{
+    cursor:pointer;
+    margin:0.6em 0 ;
+}
+.primary-btn{
+    padding:0.3em 0.4em;
+    font-size:0.8em;
+    border:none; outline:none;
+    background-color:#353b48;
+    color:#fff;
+    border-radius:0.3em;
+}
+/* END BUTTONS */
+
+/* INPUTS */
+.input{
+    width:100%;
+    min-height:2.4em;
+    font-size:0.7em;
+    margin:0.4em 0;
+    text-indent: 0.3em;;
+}
+.primary-input{
+
+}
+/* END INPUTS */
+
+/* CONTAINER */
+.container{
+    font-size:1em;
+}
+@media screen and (max-width:800px) {
+    .container{
+        font-size:0.7em;
+    }
+}
+/* END CONTAINER */
+
+/* Select Box */
+.select-box{
+    width:1.5em;    height:1.5em;     fill:#ff6600;     cursor:pointer;
+}
+/* End Select Box */
+.action-icon{
+    width:1.5em;    height:1.5em;     cursor:pointer;   margin:0.2em 0.4em;
+}
+.no-select{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+}
