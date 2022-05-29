@@ -1,3 +1,42 @@
 @import url(https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap);
-*{box-sizing:border-box;margin:0;padding:0}html{font-size:calc(-7px + 2vw)}body{background-color:#f2f3f6;font-family:Lato,Tajawal;overflow:hidden;scroll-behavior:smooth}a{color:unset;cursor:pointer;text-decoration:none}@media screen and (max-width:800px){html{font-size:calc(16px + 2vw)}.labtop{display:none!important}}@media screen and (min-width:800px){.mobile{display:none!important}}
+/* resetting */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(1px + 8 * (100vw - 400px) / 400);
+}
+
+body {
+  overflow: hidden;
+  font-family: Lato, Tajawal;
+  background-color: #f2f3f6;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  /******* TABLE *******/
+  html {
+    font-size: calc(24px + 8 * (100vw - 400px) / 400);
+  }
+
+  .labtop {
+    display: none !important;
+  }
+}
+/* labtop */
+@media screen and (min-width: 800px) {
+  .mobile {
+    display: none !important;
+  }
+}

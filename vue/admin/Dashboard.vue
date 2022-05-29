@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard" :style="'direction:' + $genStore.getters.getDir">
+      <div id="errors-container"></div>
       <Header></Header>
       <RedMessage v-if="$genStore.state.redMessageSwitch" @close="$genStore.state.redMessageSwitch = false" :message="$genStore.state.redMessage"></RedMessage>
       <GreenMessage v-if="$genStore.state.greenMessageSwitch" @close="$genStore.state.greenMessageSwitch = false" :message="$genStore.state.greenMessage"></GreenMessage>
@@ -23,6 +24,7 @@ export default {
                     {url:'/dashboard/sellers',title:this.__('Sellers')},
                     {url:'/dashboard/trips',title:this.__('Trips')},
                     {url:'/dashboard/actions',title:this.__('Actions')},
+                    {url:'/dashboard/settings',title:this.__('Settings')},
                 ]
         }
     },
@@ -44,15 +46,13 @@ export default {
     .dashboard-content{
         grid-column: 11/101;
         grid-row: 7/101;
+        overflow: auto;
         &>div{
-            height:100%;
             max-width: 100vw;
-            overflow-x:hidden;
-            overflow-y:auto;
             display:flex;
             flex-direction:column;
             .data-table{
-                height:100%;    width:100%;
+                width:100%;
                 overflow:auto;
             }
         }

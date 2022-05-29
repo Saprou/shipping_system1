@@ -36,4 +36,10 @@ Auth::routes();
 
 Route::post('/signup','App\Http\Controllers\Auth\RegisterController@customSignup');
 Route::post('/login','App\Http\Controllers\Auth\LoginController@login');
+Route::get('/admin/city/all','App\Http\Controllers\CityController@all');
+Route::resource('/admin/city','App\Http\Controllers\CityController');
+
+Route::resource('/admin/area','App\Http\Controllers\AreaController');
+
+
 
