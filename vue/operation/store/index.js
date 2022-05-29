@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Vuex from 'Vuex';
+import Vuex from 'vuex';
 import genStore from '../../store/index';
 
 function reshapeOrders(orders){

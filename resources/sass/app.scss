@@ -1,4 +1,13 @@
 @import './colors.scss';
+
+
+
+
+
+
+
+
+
 .minus{
     fill:rgb(100, 16, 3);
     margin:0 0.4em;
@@ -36,6 +45,42 @@
     overflow:auto;
     flex: 1;
     box-shadow: inset 0 0 3px 0 #aaa;
+    margin:0.7em;   padding:0.5em;
+    background-color: #fff;
+    border-radius: 6px;
+    header{
+        padding:0.4em;
+        h3{
+            display: inline-block;
+        }
+        button{
+            float: inline-end;
+            margin-inline: 0.6em;
+            font-size: 0.6em;
+        }
+    }
+    footer{
+        .pagination{
+            display: inline-flex;
+            .pagination-link{
+                display:inline-block;
+                border-radius:4px;
+                font-size: 0.5em;
+                margin: 4px;
+                padding:6px;
+                box-shadow: 0 0 3px 0 #888;
+                cursor: pointer;
+                &:hover{
+                    background-color: #ff6600;
+                    color: #fff;
+                }
+            }
+            .active{
+                background-color: #ff6600;
+                color: #fff;
+            }
+        }
+    }
 }
 .data-table{
     font-size:0.7em;
@@ -47,15 +92,14 @@
     overflow:auto;
     thead{
       tr{
-          td{
+          td,th{
               padding:0.2em 0.4em;
-              background-color:$Basic;
-              border:1px solid #aaa;
+              background-color: #353b483d;
               border-top:1px solid #4a4c4e;
               border-bottom:1px solid #4a4c4e;
               min-width:max-content;
               text-align: center;
-              color:#fff;
+              color:#000;
           }
       }
     }
@@ -142,22 +186,79 @@
     margin:0.6em 0 ;
 }
 .primary-btn{
-    padding:0.3em 0.4em;
-    font-size:0.8em;
+    padding:0.6em 0.8em;
+    font-size:0.6em;
     border:none; outline:none;
     background-color:#353b48;
     color:#fff;
     border-radius:0.3em;
+    font-weight: bold;
 }
 /* END BUTTONS */
 
 /* INPUTS */
+.form-group{
+    flex:1;
+    position: relative;
+    padding-bottom: 0.2em;
+    padding-inline: 0.4em;
+    input,select{
+        display:inline-block;
+        min-width:9em;
+        font-size:0.6em;;     
+        padding:0.3em;
+        outline:none;
+        border-radius:4px;
+        border: 2px solid #aaa;;
+        transition:all 0.5s ease;
+        width:stretch;
+        background-color: #fff;
+        &:focus{
+            border-color:dodgerBlue;
+            box-shadow:0 0 8px 0 dodgerBlue;
+        }
+    }
+    label{
+       font-size: 0.6em;
+       font-weight: bold;
+       
+    }
+}
+input,select{
+    display:inline-block;
+    min-width:9em;      width:100%;
+    font-size:0.7em;;    
+    padding:0.3em;
+    outline:none;
+    border-radius:4px;
+    border: 2px solid #aaa;
+    transition:all 0.5s ease;
+    width:stretch;
+    &:focus{
+        border-color:dodgerBlue;
+        box-shadow:0 0 8px 0 dodgerBlue;
+    }
+}
 .input{
     width:100%;
     min-height:2.4em;
     font-size:0.7em;
     margin:0.4em 0;
     text-indent: 0.3em;;
+}
+input.error{
+    border-color: red !important;
+}
+.error-message{
+    font-size: 0.4em;
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    top:calc(100% - 0.4em);
+    left: 0;
+    width: 100%;
+    animation: errorMessage 0.4s ease-in-out;
+
 }
 .primary-input{
 
@@ -190,4 +291,21 @@
     -moz-user-select: none; 
     -ms-user-select: none; 
     user-select: none; 
+}
+
+@keyframes errorMessage {
+    0%{
+        opacity: 0;
+        transform: translateX(-1px);
+    }
+    10%,30%,50%,70%,90%{
+        transform: translateX(1px);
+    }
+    20%,40%,60%,80%{
+        transform: translateX(-1px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+    }
 }

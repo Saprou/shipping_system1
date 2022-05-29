@@ -1,9 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Welcome from '../pages/Welcome.vue';
+import Welcome from '../Pages/Welcome.vue';
 import Profile from '../../pages/Profile.vue';
-import Seller from '../pages/Seller.vue';
-import Trips from '../pages/Trips.vue';
-import Orders from '../pages/Orders.vue';
+import Seller from '../Pages/Seller.vue';
+import Trips from '../Pages/Orders.vue';
+import Orders from '../Pages/Orders.vue';
 const routes =[
     {
         path:'/dashboard',

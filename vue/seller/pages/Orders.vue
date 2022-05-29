@@ -13,6 +13,7 @@
       </router-link>
     </SecButton>
   </PageHeader>
+  <div class="data-table-container">
   <div>
       <Filter v-model="filter.status">
           <option v-for="status in statuses" :key="status.label" :value="status.value">{{__(status.label)}}</option>
@@ -30,7 +31,6 @@
       </Filter>
       <ReloadData/>
   </div>
-  <div class="data-table-container">
   <table class="data-table">
     <thead>
       <tr>

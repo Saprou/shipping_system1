@@ -8,6 +8,8 @@ import Sellers from '../pages/Sellers.vue';
 import Profile from '../../pages/Profile.vue';
 import Trips from '../pages/Trips.vue';
 import Actions from '../pages/Actions.vue';
+import Settings from '../pages/Settings.vue';
+
 
 const routes =[
     {
@@ -54,6 +56,11 @@ const routes =[
         path:'/dashboard/actions',
         component:Actions,
         name:"Actions"
+    },
+    {
+        path:'/dashboard/settings',
+        component:Settings,
+        name:"Settings"
     },
 ]
 const router = createRouter({

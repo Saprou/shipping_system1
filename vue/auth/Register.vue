@@ -265,7 +265,7 @@ export default {
                                     this.$genStore.commit('errorFound',this.user.sec_mobile.name);
                                     return null;
                                 }
-                window.location.href = '/email/verify';
+                window.location.href = '/dashboard';
             }).catch(err => {
                 console.log('Error found')
             }).then(() => {

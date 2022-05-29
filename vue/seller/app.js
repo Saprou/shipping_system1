@@ -5,6 +5,7 @@ import router from './router';
 import { Lang } from 'laravel-vue-lang';
 import genStore from '../store/index';
 import axios from 'axios';
+
 /* Components */
 import CopyText from '../components/CopyText.vue';
 import PagesToggler from '../components/PagesToggler.vue';

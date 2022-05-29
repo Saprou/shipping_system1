@@ -8,32 +8,13 @@ use App\Models\Order;
 use App\Models\Location;
 use App\Http\Controllers\TripController;
 use Carbon\Carbon;
-
+use App\Http\Requests\StoreOrderRequest;
 class OrderController extends Controller
 {
-    public function create_deliver(Request $req){
-        $location = $req->location;
-
-        $order = new Order();
-        $order['total_cash'] = $req->order['total_cash'];
-        $order['package_type'] = $req->order['package_type'];
-        $order['number_of_items'] = $req->order['number_of_items'];
-        $order['desc'] = $req->order['desc'];
-        $order['type'] = 1;
-        $order['status'] = 1;
-        $order['user_id'] = auth()->user()->id;
-        $order['awb'] = 'O-g'.$order->id;
-        $order['name'] = $req->order['name'];
-        $order['mobile'] = $req->order['mobile'];
-        $order['sec_mobile'] = $req->order['sec_mobile'];
-        $order['notes'] = $req->order['notes'];
-        $order['city'] = $location['city'];
-        $order['area'] = $location['area'];
-        $order['street'] = $location['street'];
-        $order['landmarks'] = $location['landmarks'];
-        $order['building'] = $location['building'];
-        $order['floor'] = $location['floor'];
-        $order['apartment'] = $location['apartment'];
+    public function create_deliver(StoreOrderRequest $request){
+        $request->merge(['type'=>1,'user_id'=>auth()->id()]);
+        $order = new Order($request->all());
+        $order['awb'] = 'O-'.rand(1000,10000);
         $order->save();
         $order['awb'] = 'O-'.$order->id;
         $order->save();

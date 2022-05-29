@@ -1,10 +1,46 @@
-import Vuex from 'Vuex';
+import Vuex from 'vuex';
 import axios from 'axios';
-function errorFound(name){
-    let input = document.getElementById(name);
-    input.scrollIntoView(false);
-    input.focus();
-}
+
+axios.interceptors.response.use(
+    response => {
+        genStore.commit('loading',false);
+        return response;
+    },
+    error => {
+        console.log(error.response.data)
+        if(error.response && error.response.data && error.response.data.errors){
+            const errors = error.response.data.errors;
+            for (const key in errors) {
+                if (Object.hasOwnProperty.call(errors, key)) {
+                    let input = document.querySelector('[name='+key+']');
+                    if(input){
+                        let errMessage = "<label class='error-message'>"+errors[key]+"</label>";
+                        input.classList.add('error');
+                        input.parentElement.insertAdjacentHTML("beforeend",errMessage);
+                    }
+                }
+            }
+            let firstInput = document.querySelector('[name='+Object.keys(errors)[0]+']');
+            if(firstInput){firstInput.focus();}
+
+        }
+    genStore.commit('loading',false);
+    throw error;
+});
+
+axios.interceptors.request.use(function (config) {
+    genStore.commit('loading',true);
+    document.querySelectorAll('.error-message').forEach(message => {
+        message.remove();
+    });
+    document.querySelectorAll('input,select').forEach(input => {
+        input.classList.remove('error');
+    })
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
 const genStore = new Vuex.Store({
     state:{
         areas:[],
@@ -13,7 +49,8 @@ const genStore = new Vuex.Store({
         redMessageSwitch:false,
         greenMessageSwitch:false,
         redMessage:'Message',
-        greenMessage:'Message'
+        greenMessage:'Message',
+        cities:[]
     },
     getters:{
         getLocale:(state) =>{
@@ -52,7 +89,7 @@ const genStore = new Vuex.Store({
     },
     mutations:{
         setLocale:(state,locale) => {
-            localStorage.setItem('Locale', locale);
+            localStorage.setItem('Locale', 'en');
             window.location.reload();
         },
         logout:()=>{
@@ -62,9 +99,6 @@ const genStore = new Vuex.Store({
             }).then(()=>{
                 window.location.href ='/';
             })
-        },
-        errorFound:(state,name)=>{
-            errorFound(name);
         },
         loading:(state,value)=>{
             state.loaderSwitch = value;
@@ -83,17 +117,18 @@ const genStore = new Vuex.Store({
         setOrderStatuses:(state,areas)=>{
             state.orderStatuses = areas;
         },
+        getCities:(state)=>{
+            axios('/admin/city/all').then(res => {
+                state.cities = res.data;
+            })
+        }
     },
 });
-const setAreas = () => {
-   let areas = require("./areas.json")
-    genStore.commit('setAreas', areas);
-}
+genStore.commit('getCities');
 const setOrderStatuses = () => {
    let statuses = require("./orderStatuses.json")
     genStore.commit('setOrderStatuses', statuses);
 }
-setAreas();
 setOrderStatuses();
 document.querySelector('html').setAttribute('dir',localStorage.getItem('Locale') == 'ar' ? 'rtl':'ltr');
 export default genStore;
